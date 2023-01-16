@@ -1,0 +1,1 @@
+The goal of this project to prepare a developer for upcoming changes to the tech stack of the CMS. This project is primarily concerned with helping a developer attain enough familiarity with working with technologies like React and TypeScript in order to work in the new CMS environment.
