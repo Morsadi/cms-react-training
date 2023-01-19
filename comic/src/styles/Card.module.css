@@ -1,0 +1,22 @@
+.imgCont {
+	aspect-ratio: 479 / 736;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.slides {
+    display: grid;
+    gap: 20px;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+}
+@media (min-width: 40em) {
+	.slides {
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+	}
+}
