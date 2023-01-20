@@ -1,5 +1,5 @@
 .imgCont {
-	aspect-ratio: 479 / 736;
+	aspect-ratio: 599 / 920;
 }
 
 .image {
@@ -15,6 +15,21 @@
     margin-inline: auto;
     padding-inline: 20px;
 }
+
+.centerInner {
+	display: grid;
+    place-items: center;
+}
+
+.button {
+	width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #4f4f4f;
+    color: #fff;
+}
+
 @media (min-width: 40em) {
 	.slides {
 		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));

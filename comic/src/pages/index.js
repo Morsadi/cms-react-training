@@ -32,9 +32,10 @@ export default function Home() {
 									src={card.thumbnail}
 									blurDataURL={card.thumbnail}
 									placeholder="blur"
-									width={479} 
-									height={736}/>
-								<Button link={card.thumbnail}/>
+									width={599} 
+									height={920}/>
+								<Button
+									link={card.thumbnail}/>
 							</div>
 							<div className='content-section'>
 								<h2>{card.title}</h2>
