@@ -16,6 +16,7 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	list-style-type: none;
 }
 
 html,
@@ -26,5 +27,4 @@ body {
 
 body {
 	color: var(--body-text);
-	background-color: var(--body-bg);
 }

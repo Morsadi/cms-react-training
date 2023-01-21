@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import cardStyles from '@/styles/Card.module.css';
+import Image from 'next/legacy/image';
+import styles from '@/styles/Comic.module.css';
 import { Button } from '../components/button';
 import { Detail } from '../components/detail';
 import comics from '../data/comics.json';
@@ -21,19 +21,20 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={cardStyles.slides}>
+			<main className={styles.slides}>
 				{comics?.map((card, key) => {
 					return (
 						<article key={key} className="card">
-							<div className={cardStyles.imgCont}>
+							<div className={styles.imgCont}>
 								<Image 
-									className={cardStyles.image}
+									className={styles.image}
 									alt={card.title} 
 									src={card.thumbnail}
 									blurDataURL={card.thumbnail}
 									placeholder="blur"
-									width={599} 
-									height={920}/>
+									width={310} 
+									height={475}
+									layout="responsive"/>
 								<Button
 									link={card.thumbnail}/>
 							</div>
