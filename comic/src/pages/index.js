@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from '@/styles/Comic.module.css';
 import { Button } from '../components/button';
 import { Detail } from '../components/detail';
@@ -7,10 +7,16 @@ import comics from '../data/comics.json';
 
 
 export default function Home() {
-	
 	function get_creators (creators) {
 		const names = creators.map( creator => creator.name.split(' ')[1])
 		return names.join(', ')
+	}
+	const slides = {
+		display: "grid",
+		gridTemplateColumns: "repeat(auto-fit, minmax(183px, 1fr))",
+		gridGap: "30px 20px",
+		paddingInline: "10px",
+		height: "100%"
 	}
 	return (
 		<>
@@ -21,7 +27,7 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={styles.slides}>
+			<main style={slides} className={styles.slides}>
 				{comics?.map((card, key) => {
 					return (
 						<article key={key} className="card">
@@ -32,9 +38,8 @@ export default function Home() {
 									src={card.thumbnail}
 									blurDataURL={card.thumbnail}
 									placeholder="blur"
-									width={310} 
-									height={475}
-									layout="responsive"/>
+									fill
+									/>
 								<Button
 									link={card.thumbnail}/>
 							</div>
