@@ -1,16 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '@/styles/Comic.module.css';
-import { Button } from '../components/button';
-import { Detail } from '../components/detail';
-import comics from '../data/comics.json';
+import Comic from '../components/comic/Comic'
+
+import staticData from '../data/comics.json';
 
 
 export default function Home() {
-	function get_creators (creators) {
-		const names = creators.map( creator => creator.name.split(' ')[1])
-		return names.join(', ')
-	}
 	const slides = {
 		display: "grid",
 		gridTemplateColumns: "repeat(auto-fit, minmax(183px, 1fr))",
@@ -26,34 +21,13 @@ export default function Home() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-
-			<main style={slides} className={styles.slides}>
-				{comics?.map((card, key) => {
+			<div style={slides} className={styles.slides}>
+				{staticData?.map((content, key) => {
 					return (
-						<article key={key} className="card">
-							<div className={styles.imgCont}>
-								<Image 
-									className={styles.image}
-									alt={card.title} 
-									src={card.thumbnail}
-									blurDataURL={card.thumbnail}
-									placeholder="blur"
-									fill
-									/>
-								<Button
-									link={card.thumbnail}/>
-							</div>
-							<div className='content-section'>
-								<h2>{card.title}</h2>
-								<Detail 
-									issue={+card.issueNumber} 
-									date={card.publishDate && new Date(card.publishDate)} 
-									creators={get_creators(card.creators)}/>
-							</div>
-						</article>
+						<Comic key={key} content={content}/>
 					);
 				})}
-			</main>
+			</div>
 		</>
 	);
 }

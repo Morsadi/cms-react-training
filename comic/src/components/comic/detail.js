@@ -1,4 +1,5 @@
-import Moment from 'react-moment';
+import Moment from 'react-moment'
+import PropTypes from 'prop-types';
 
 export const Detail = ({ issue= 0, date, creators }) => {
 	return (
@@ -9,3 +10,7 @@ export const Detail = ({ issue= 0, date, creators }) => {
 		</ul>
 	);
 };
+
+Detail.propTypes = {
+	date: PropTypes.instanceOf(Date),
+}
