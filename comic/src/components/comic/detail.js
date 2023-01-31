@@ -2,7 +2,6 @@ import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 
 export const Detail = ({ issue = 0, date, creators }) => {
-	console.log(typeof creators);
 	return (
 		<ul>
 			<li><strong>Issue: </strong>{issue}</li>

@@ -21,7 +21,7 @@ export const fetchData = (url = '/api/hello') => {
 		};
 
 		fetchData();
-	}, [url]);
+	}, []);
 
 	return { isLoading, data, serverError };
 };
