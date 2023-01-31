@@ -1,18 +1,19 @@
 import Head from 'next/head';
 import styles from '@/styles/Comic.module.css';
-import Comic from '../components/comic/Comic'
-
-import staticData from '../data/comics.json';
+import Comic from '../components/comic/Comic';
+import { fetchData } from '../hooks/fetchData';
 
 
 export default function Home() {
 	const slides = {
-		display: "grid",
-		gridTemplateColumns: "repeat(auto-fit, minmax(183px, 1fr))",
-		gridGap: "30px 20px",
-		paddingInline: "10px",
-		height: "100%"
-	}
+		display: 'grid',
+		gridTemplateColumns: 'repeat(auto-fit, minmax(183px, 1fr))',
+		gridGap: '30px 20px',
+		paddingInline: '10px',
+	};
+
+	const { isLoading, data, serverError } = fetchData('/api/comics');
+
 	return (
 		<>
 			<Head>
@@ -22,11 +23,11 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<div style={slides} className={styles.slides}>
-				{staticData?.map((content, key) => {
-					return (
-						<Comic key={key} content={content}/>
-					);
-				})}
+			{isLoading ? <span>Loading...</span> : (
+				serverError ? <span>Error in fetching data...</span> : (
+					data?.map((content, key) => <Comic key={key} content={content}/>)
+				)
+			)}
 			</div>
 		</>
 	);

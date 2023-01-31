@@ -14,7 +14,7 @@ export default function Comic({ content }) {
 				<Detail
 					issue={+issueNumber}
 					date={publishDate && new Date(publishDate)}
-					creators={creators.map((creator) => creator.name.split(' ')[1]).join(', ')}
+					creators={creators.map(({name}) => name.split(' ')[1]).join(', ')}
 				/>
 			</div>
 			<div className={styles.imgCont}>
@@ -25,6 +25,7 @@ export default function Comic({ content }) {
 					blurDataURL={thumbnail}
 					placeholder='blur'
 					fill
+					sizes='(min-width: 640px) 30vw, 35vw'
 				/>
 				<Button placeholderLink={content.thumbnail} />
 			</div>
@@ -41,3 +42,4 @@ Comic.propTypes = {
 		creators: PropTypes.array,
 	}),
 };
+
