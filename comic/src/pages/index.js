@@ -3,7 +3,6 @@ import styles from '@/styles/Comic.module.css';
 import Comic from '../components/comic/Comic';
 import { fetchData } from '../hooks/fetchData';
 
-
 export default function Home() {
 	const slides = {
 		display: 'grid',
@@ -23,11 +22,11 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<div style={slides} className={styles.slides}>
-			{isLoading ? <span>Loading...</span> : (
-				serverError ? <span>Error in fetching data...</span> : (
-					data?.map((content, key) => <Comic key={key} content={content}/>)
-				)
-			)}
+				{isLoading ? <span>Loading...</span> : (
+					serverError ? <span>Error in fetching data...</span> : (
+						data?.map((content, key) => <Comic key={key} content={content}/>)
+					)
+				)}
 			</div>
 		</>
 	);

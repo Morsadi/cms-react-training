@@ -19,10 +19,10 @@ export default async function handler(req, res) {
 		const { results } = data.data;
 
 		const newResults = results.map(comic => {
-			const { id, thumbnail: img, creators: {items: creators}, characters, issueNumber, title, dates} = comic;
+			const { id, thumbnail: img, creators: {items: creators}, characters, issueNumber, title, modified: publishDate} = comic;
 
 			const thumbnail = `${img.path}.${img.extension}`
-			const publishDate = dates?.find(date=> date.type === "onsaleDate")?.date
+			// const publishDate = dates?.find(date=> date.type === "focDate")?.date
 
 			return { id, thumbnail, creators: creators, characters, issueNumber, title, publishDate }
 			// return comic

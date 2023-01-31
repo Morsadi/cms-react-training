@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
-
 import { Button } from '../comic/button';
 import { Detail } from '../comic/detail';
 import styles from '@/styles/Comic.module.css';
@@ -13,8 +12,8 @@ export default function Comic({ content }) {
 				<h2>{title}</h2>
 				<Detail
 					issue={+issueNumber}
-					date={publishDate && new Date(publishDate)}
-					creators={creators.map(({name}) => name.split(' ')[1]).join(', ')}
+					date={Date.parse(publishDate) ? publishDate : undefined}
+					creators={creators?.map(({ name }) => name.split(' ')[1]).join(', ')}
 				/>
 			</div>
 			<div className={styles.imgCont}>
@@ -42,4 +41,3 @@ Comic.propTypes = {
 		creators: PropTypes.array,
 	}),
 };
-
