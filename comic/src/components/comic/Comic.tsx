@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
-import { Button } from '../comic/button';
-import { Detail } from '../comic/detail';
-import styles from '@/styles/Comic.module.css';
+import { Button } from './button';
+import { Detail } from './detail';
+import styles from '../../styles/Comic.module.css';
 
 export default function Comic({ content }) {
 	const { title, thumbnail, issueNumber, publishDate, creators } = content;

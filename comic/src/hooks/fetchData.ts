@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const fetchData = (url = '/api/hello') => {
+export const fetchData = (url: string) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [data, setData] = useState(null);
 	const [serverError, setServerError] = useState(null);
@@ -21,7 +21,7 @@ export const fetchData = (url = '/api/hello') => {
 		};
 
 		fetchData();
-	}, []);
+	}, [url]);
 
 	return { isLoading, data, serverError };
 };
