@@ -1,5 +1,4 @@
 import Moment from 'react-moment';
-import PropTypes from 'prop-types';
 
 export const Detail = ({ issue = 0, date, creators }) => {
 	return (
@@ -9,9 +8,4 @@ export const Detail = ({ issue = 0, date, creators }) => {
 			{creators && <li><strong>Creators: </strong>{ creators }</li>}
 		</ul>
 	);
-};
-
-Detail.propTypes = {
-	creators: PropTypes.string,
-	date: PropTypes.string,
 };

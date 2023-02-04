@@ -1,10 +1,13 @@
 import Image from 'next/image';
-import PropTypes from 'prop-types';
 import { Button } from './button';
 import { Detail } from './detail';
-import styles from '../../styles/Comic.module.css';
+import styles from '../styles/Comic.module.css';
 
-export default function Comic({ content }) {
+import {ComicResult} from '../../types'
+
+export default function Comic({ content }: ComicResult ) {
+	console.log(ComicResult);
+	
 	const { title, thumbnail, issueNumber, publishDate, creators } = content;
 	return (
 		<article className={styles.card}>
@@ -31,13 +34,3 @@ export default function Comic({ content }) {
 		</article>
 	);
 }
-
-Comic.propTypes = {
-	content: PropTypes.shape({
-		title: PropTypes.string,
-		thumbnail: PropTypes.string,
-		issueNumber: PropTypes.number,
-		publishDate: PropTypes.string,
-		creators: PropTypes.array,
-	}),
-};

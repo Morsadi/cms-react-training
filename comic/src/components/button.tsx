@@ -1,5 +1,5 @@
 import { FaBolt } from 'react-icons/fa';
-import styles from '../../styles/Comic.module.css';
+import styles from '../styles/Comic.module.css';
 
 export const Button = ({ placeholderLink }) => {
 	return (

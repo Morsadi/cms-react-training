@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import styles from '../styles/Comic.module.css';
-import Comic from '../components/comic/Comic';
+import Comic from '../components/comic'
 import { fetchData } from '../hooks/fetchData';
+import {ComicResult} from '../../types'
 
 // interface ComicStructure
 
@@ -26,7 +27,7 @@ export default function Home() {
 			<div style={slides} className={styles.slides}>
 				{isLoading ? <span>Loading...</span> : (
 					serverError ? <span>Error in fetching data...</span> : (
-						data?.map((content: object, key: number) => <Comic key={key} content={content}/>)
+						data?.map((content: ComicResult, key: number) => <Comic key={key} content={content}/>)
 					)
 				)}
 			</div>
