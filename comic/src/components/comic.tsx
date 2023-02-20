@@ -5,10 +5,8 @@ import styles from '../styles/Comic.module.css';
 
 import {ComicResult} from '../../types'
 
-export default function Comic({ content }: ComicResult ) {
-	console.log(ComicResult);
-	
-	const { title, thumbnail, issueNumber, publishDate, creators } = content;
+export default function Comic({ comic }: ComicResult ) {
+	const { title, thumbnail, issueNumber, publishDate, creators } = comic;
 	return (
 		<article className={styles.card}>
 			<div>
@@ -29,7 +27,7 @@ export default function Comic({ content }: ComicResult ) {
 					fill
 					sizes='(min-width: 640px) 30vw, 35vw'
 				/>
-				<Button placeholderLink={content.thumbnail} />
+				<Button placeholderLink={thumbnail} />
 			</div>
 		</article>
 	);

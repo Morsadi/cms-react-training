@@ -27,7 +27,7 @@ export default function Home() {
 			<div style={slides} className={styles.slides}>
 				{isLoading ? <span>Loading...</span> : (
 					serverError ? <span>Error in fetching data...</span> : (
-						data?.map((content: ComicResult, key: number) => <Comic key={key} content={content}/>)
+						data?.map((content: ComicResult, key: number) => <Comic key={key} comic={content}/>)
 					)
 				)}
 			</div>

@@ -1,3 +1,12 @@
+export interface ComicCall {
+	id: number;
+	thumbnail: string;
+	items: Creator[];
+	issueNumber: number;
+	title: string;
+	publishDate: string;
+}
+
 export interface ComicResult {
 	id: number;
 	thumbnail: string;
