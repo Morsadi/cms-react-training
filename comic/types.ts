@@ -1,10 +1,15 @@
 export interface ComicCall {
 	id: number;
-	thumbnail: string;
-	items: Creator[];
+	thumbnail: Thumbnail;
+	creators: Creator;
 	issueNumber: number;
 	title: string;
-	publishDate: string;
+	modified: string;
+}
+
+export interface Thumbnail {
+	path: string;
+	extension: string;
 }
 
 export interface ComicResult {
@@ -24,7 +29,9 @@ export interface Characters {
 }
 
 export interface Creator {
-	resourceURI: string;
-	name: string;
-	role: string;
+	items: {
+		resourceURI: string;
+		name: string;
+		role: string;
+	}
 }
