@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import styles from '../styles/Comic.module.css';
-import Comic from '../components/comic'
+import Comic from '../components/comic';
 import { fetchData } from '../hooks/fetchData';
-import {ComicResult} from '../../types'
-
-// interface ComicStructure
+import { ComicResult } from '../../types';
 
 export default function Home() {
 	const slides = {
@@ -25,10 +23,12 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<div style={slides} className={styles.slides}>
-				{isLoading ? <span>Loading...</span> : (
-					serverError ? <span>Error in fetching data...</span> : (
-						data?.map((content: ComicResult, key: number) => <Comic key={key} comic={content}/>)
-					)
+				{isLoading ? (
+					<span>Loading...</span>
+				) : serverError ? (
+					<span>Error in fetching data...</span>
+				) : (
+					data?.map((comic: ComicResult) => <Comic key={comic.id} comic={comic} />)
 				)}
 			</div>
 		</>

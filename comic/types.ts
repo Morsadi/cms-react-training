@@ -1,10 +1,18 @@
-export interface ComicCall {
+export interface FetchedResult {
 	id: number;
 	thumbnail: Thumbnail;
-	creators: Creator;
+	creators: CreatorCall;
 	issueNumber: number;
 	title: string;
 	modified: string;
+}
+
+export interface CreatorCall {
+	items?: {
+		resourceURI: string;
+		name: string;
+		role: string;
+	};
 }
 
 export interface Thumbnail {
@@ -21,17 +29,9 @@ export interface ComicResult {
 	publishDate: string;
 }
 
-export interface Characters {
-	available: number;
-	collectionURI: string;
-	items: any[];
-	returned: number;
-}
 
 export interface Creator {
-	items: {
-		resourceURI: string;
-		name: string;
-		role: string;
-	}
+	resourceURI: string;
+	name: string;
+	role: string;
 }

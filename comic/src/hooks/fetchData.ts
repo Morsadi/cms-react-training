@@ -1,20 +1,26 @@
 import { useState, useEffect } from 'react';
 
-export const fetchData = (url: string) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [data, setData] = useState([]);
-	const [serverError, setServerError] = useState(null);
+interface FetchDataResponse<Data> {
+	isLoading: boolean;
+	data: Data[];
+	serverError: any;
+}
+
+export const fetchData = <Data extends unknown = any>(url: string): FetchDataResponse<Data> => {
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [data, setData] = useState<Data[]>([]);
+	const [serverError, setServerError] = useState<any>(null);
 
 	useEffect(() => {
 		setIsLoading(true);
-		const fetchData = async () => {
+		const fetchData = async (): Promise<void> => {
 			try {
 				const res = await fetch(url);
 				const data = await res.json();
 
 				setData(data);
 				setIsLoading(false);
-			} catch (err) {
+			} catch (err: any) {
 				setServerError(err);
 				setIsLoading(false);
 			}

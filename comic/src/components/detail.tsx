@@ -1,6 +1,12 @@
 import Moment from 'react-moment';
 
-export const Detail = ({ issue = 0, date, creators }) => {
+interface Props {
+	issue: number;
+	date: string | undefined;
+	creators: string;
+}
+
+export const Detail = ({ issue = 0, date, creators }: Props) => {
 	return (
 		<ul>
 			<li><strong>Issue: </strong>{issue}</li>

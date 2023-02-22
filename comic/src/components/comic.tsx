@@ -3,9 +3,13 @@ import { Button } from './button';
 import { Detail } from './detail';
 import styles from '../styles/Comic.module.css';
 
-import {ComicResult} from '../../types'
+import { ComicResult } from '../../types';
 
-export default function Comic({ comic }: ComicResult ) {
+interface Props {
+	comic: ComicResult;
+}
+
+export default function Comic({ comic }: Props) {
 	const { title, thumbnail, issueNumber, publishDate, creators } = comic;
 	return (
 		<article className={styles.card}>
@@ -27,7 +31,7 @@ export default function Comic({ comic }: ComicResult ) {
 					fill
 					sizes='(min-width: 640px) 30vw, 35vw'
 				/>
-				<Button placeholderLink={thumbnail} />
+				<Button />
 			</div>
 		</article>
 	);
