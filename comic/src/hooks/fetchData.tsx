@@ -6,6 +6,7 @@ interface FetchDataResponse<Res> {
 	serverError: any;
 }
 
+
 export const fetchData = <Res extends unknown = any>(url: string): FetchDataResponse<Res> => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [data, setData] = useState<Res[]>([]);
