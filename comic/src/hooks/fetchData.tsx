@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-interface FetchDataResponse<Data> {
+interface FetchDataResponse<Res> {
 	isLoading: boolean;
-	data: Data[];
+	data: Res[];
 	serverError: any;
 }
 
-export const fetchData = <Data extends unknown = any>(url: string): FetchDataResponse<Data> => {
+export const fetchData = <Res extends unknown = any>(url: string): FetchDataResponse<Res> => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [data, setData] = useState<Data[]>([]);
+	const [data, setData] = useState<Res[]>([]);
 	const [serverError, setServerError] = useState<any>(null);
 
 	useEffect(() => {
