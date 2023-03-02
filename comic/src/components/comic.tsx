@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { Button } from './button';
 import { Detail } from './detail';
@@ -12,9 +13,9 @@ interface Props {
 export default function Comic({ comic }: Props) {
 	const { title, thumbnail, issueNumber, publishDate, creators } = comic;
 	return (
-		<article className={styles.card}>
+		<article data-testid='comic' className={styles.card}>
 			<div>
-				<h2>{title}</h2>
+				<h2 data-testid='title'>{title}</h2>
 				<Detail
 					issue={+issueNumber}
 					date={Date.parse(publishDate) ? publishDate : undefined}
@@ -23,6 +24,7 @@ export default function Comic({ comic }: Props) {
 			</div>
 			<div className={styles.imgCont}>
 				<Image
+					data-testid='image'
 					className={styles.imageCover}
 					alt={title}
 					src={thumbnail}
