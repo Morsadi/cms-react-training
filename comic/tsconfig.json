@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "tests/pages/Comic.test.js"  ],
   "exclude": [
     "node_modules"
   ]

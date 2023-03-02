@@ -1,9 +1,0 @@
-import "@testing-library/jest-dom";
-import Home from './src/pages/index'
-import { fireEvent, render, screen } from "@testing-library/react";
-
-describe("Calculator", () => {
-    it("renders a calculator", () => {
-        render(<Home />);
-    });
-  });

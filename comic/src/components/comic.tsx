@@ -18,7 +18,7 @@ export default function Comic({ comic }: Props) {
 				<Detail
 					issue={+issueNumber}
 					date={Date.parse(publishDate) ? publishDate : undefined}
-					creators={creators?.map(({ name }) => name.split(' ')[1]).join(', ')}
+					creators={creators?.map(( name ) => name.split(' ')[1]).join(', ')}
 				/>
 			</div>
 			<div className={styles.imgCont}>

@@ -22,7 +22,7 @@ export default function Home() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<div style={slides} className={styles.slides}>
+			<div data-testid='grid' style={slides} className={styles.slides}>
 				{isLoading ? (
 					<span>Loading...</span>
 				) : serverError ? (

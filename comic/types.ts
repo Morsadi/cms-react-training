@@ -8,11 +8,7 @@ export interface FetchedResult {
 }
 
 export interface CreatorCall {
-	items?: {
-		resourceURI: string;
-		name: string;
-		role: string;
-	};
+	items: Creator[];
 }
 
 export interface Thumbnail {
@@ -23,7 +19,7 @@ export interface Thumbnail {
 export interface ComicResult {
 	id: number;
 	thumbnail: string;
-	creators: Creator[];
+	creators: string[];
 	issueNumber: number;
 	title: string;
 	publishDate: string;
