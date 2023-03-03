@@ -16,18 +16,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	// const API_BASE = process.env.COMIC_API_BASE;
 	const baseUrl = 'http://gateway.marvel.com/v1/public/comics';
+	// const baseUrl = 'http://gateway.marvel.com/v1/public/creators/32/comics?characters=1009368';
 	const ts = Date.now().toString();
 	const apiKey = api_key;
 	const privateKey = private_key;
 	const hash = md5(ts + privateKey + apiKey);
-	const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
+	const api = `${baseUrl}?ts=${ts}&hash=${hash}&apikey=${apiKey}&characters=1009368&creators=12787`;
 
 	try {
 		const response = await fetch(api);
 		const data = await response.json();
-		const { results } = data.data;
+		const results = data?.data?.results;
 
-		const newResults = results.map((comic: FetchedResult) => {
+		const newResults = results?.map((comic: FetchedResult) => {
 			const {
 				id,
 				thumbnail: img,
