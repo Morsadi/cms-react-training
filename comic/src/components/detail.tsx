@@ -12,7 +12,7 @@ export const Detail = ({ issue = 0, date, creators }: Props) => {
 		<ul data-testid='details'>
 			<li className='issue'><strong>Issue: </strong>{issue}</li>
 			{!!date && <li className='date'><strong>Pubulished: </strong><Moment format='LL'>{ date }</Moment></li>}
-			{creators && <li className='creator'><strong>Creators: </strong>{ creators }</li>}
+			{creators && <li className='creators'><strong>Creators: </strong>{ creators }</li>}
 		</ul>
 	);
 };

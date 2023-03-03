@@ -14,22 +14,44 @@ const comicProps = {
 	},
 };
 const detailProps = {
-	creators: ['Jim Nausedas', 'Joe Mors'],
-	issueNumber: 0,
+	creators: 'Smith, Mors',
+	issue: 3,
 	date: '2019-11-07T08:46:15-0500',
 };
 
-test('<Comic>', () => {
-	const { container, debug, getByTestId } = render(<Comic {...comicProps} />);
+describe('<Comic>', () => {
+	it('Render & Debug', ()=>{
+		const { debug, getByTestId } = render(<Comic {...comicProps} />);
 
-	debug();
-	expect(getByTestId('comic')).toBeTruthy();
-	expect(getByTestId('title').textContent).toBe('Marvel Previews (2017)');
+		debug();
+		expect(getByTestId('comic')).toBeTruthy();
+		expect(getByTestId('title').textContent).toBe('Marvel Previews (2017)');
+	});
+	it('Title', ()=>{
+		const { getByTestId } = render(<Comic {...comicProps} />);
+
+		expect(getByTestId('title').textContent).toBe('Marvel Previews (2017)');
+	});
+	it('Image alt & url', ()=>{
+		const { getByTestId } = render(<Comic {...comicProps} />);
+		const img = getByTestId('image');
+
+		expect(img).toHaveAttribute('alt', 'Marvel Previews (2017)')
+	});
 });
-test('<Detail> #1', () => {
-	const { container, debug, getByTestId } = render(<Detail {...detailProps} />);
 
-	debug();
-	expect(getByTestId('details')).toBeTruthy();
-	expect(getByTestId('details').querySelector('.date').textContent).toBe('Pubulished: November 7, 2019')
+describe('<Detail> #1', () => {
+	
+	it('Render & Debug', ()=>{
+		const { debug, getByTestId } = render(<Detail {...detailProps} />);
+		debug();
+		expect(getByTestId('details')).toBeTruthy();	
+	})
+	it('Date & issue & creators', ()=>{
+		const { getByTestId } = render(<Detail {...detailProps} />);
+		
+		expect(getByTestId('details').querySelector('.date').textContent).toBe('Pubulished: November 7, 2019');
+		expect(getByTestId('details').querySelector('.issue').textContent).toBe('Issue: 3');
+		expect(getByTestId('details').querySelector('.creators').textContent).toBe('Creators: Smith, Mors');
+	})
 });
