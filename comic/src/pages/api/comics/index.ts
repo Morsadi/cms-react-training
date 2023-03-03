@@ -9,10 +9,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	const headers: string[] = req.rawHeaders;
 
 	// Prevent endpoint direct access
-	// if (!headers.includes('Referer')) {
-	// 	res.status(200).send({message: 'Restricted Access'});
-	// 	return;
-	// }
+	if (!headers.includes('Referer')) {
+		res.status(200).send({message: 'Restricted Access'});
+		return;
+	}
 
 	// const API_BASE = process.env.COMIC_API_BASE;
 	const baseUrl = 'http://gateway.marvel.com/v1/public/comics';

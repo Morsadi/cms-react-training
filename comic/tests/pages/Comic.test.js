@@ -1,9 +1,7 @@
 import '@testing-library/jest-dom';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import Comic from '../../src/components/comic';
 import { Detail } from '../../src/components/detail';
-import Home from '../../src/pages/index';
-import { Button } from '../../src/components/button';
 
 afterEach(cleanup);
 
@@ -40,10 +38,10 @@ describe('<Comic>', () => {
 	});
 });
 
-describe('<Detail> #1', () => {
-	
+describe('<Detail>', () => {
 	it('Render & Debug', ()=>{
 		const { debug, getByTestId } = render(<Detail {...detailProps} />);
+
 		debug();
 		expect(getByTestId('details')).toBeTruthy();	
 	})
