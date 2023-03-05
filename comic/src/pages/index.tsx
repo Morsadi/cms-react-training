@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Comic.module.css';
 import Comic from '../components/comic';
+import { Filters } from '../components/filters/filter_index';
 import { fetchData } from '../hooks/fetchData';
 import { ComicResult } from '../../types';
 
@@ -13,7 +14,14 @@ export default function Home() {
 		paddingInline: '10px',
 	};
 
-	const { isLoading, data, serverError } = fetchData('/api/comics');
+	const [url, setUrl] = useState('/api/comics');
+
+	const { isLoading, data, serverError } = fetchData(url);
+
+	// url is being listened to in the fetchData file
+	const updateCall = (query:string) => {
+		setUrl(`/api/comics?${query}`);
+	};
 
 	return (
 		<>
@@ -23,13 +31,14 @@ export default function Home() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+			<Filters isLoading={isLoading} updateCall={updateCall} />
 			<div data-testid='grid' style={slides} className={styles.slides}>
 				{isLoading ? (
 					<span>Loading...</span>
 				) : serverError ? (
 					<span>Error in fetching data...</span>
 				) : (
-					data?.map((comic: ComicResult) => <Comic key={comic.id} comic={comic} />)
+					data.length ? data.map((comic: ComicResult) => <Comic key={comic.id} comic={comic} />) : <h3>No results</h3>
 				)}
 			</div>
 		</>

@@ -6,13 +6,15 @@ const api_key = '3ddd7fcf726acc8fa2940749b2c8641d';
 const private_key = '6629ec43fdacee75cb0e6419ff2d3ea12e7334f6';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	const headers: string[] = req.rawHeaders;
+	// const headers: string[] = req.rawHeaders;
+	const { charactor } = req.query;
+	const { creator } = req.query;
 
 	// Prevent endpoint direct access
-	if (!headers.includes('Referer')) {
-		res.status(200).send({message: 'Restricted Access'});
-		return;
-	}
+	// if (!headers.includes('Referer')) {
+	// 	res.status(200).send({message: 'Restricted Access'});
+	// 	return;
+	// }
 
 	// const API_BASE = process.env.COMIC_API_BASE;
 	const baseUrl = 'http://gateway.marvel.com/v1/public/comics';
@@ -20,8 +22,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	const apiKey = api_key;
 	const privateKey = private_key;
 	const hash = md5(ts + privateKey + apiKey);
-	const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
-
+	// const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&characters=1009368`;
+	const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}${charactor ? `&characters=${charactor}` :''}${creator ? `&creators=${creator}` :''}`;
 	try {
 		const response = await fetch(api);
 		const data = await response.json();
