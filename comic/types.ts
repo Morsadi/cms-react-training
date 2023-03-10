@@ -25,9 +25,17 @@ export interface ComicResult {
 	publishDate: string;
 }
 
-
-export interface Creator {
+export interface Res {
 	resourceURI: string;
 	name: string;
 	role: string;
 }
+
+
+
+// export interface Creator {
+// 	resourceURI: string;
+// 	name: string;
+// 	role: string;
+// }
+

@@ -13,10 +13,10 @@ export const Filter = ({ updateParams, filterObj, filterType, isLoading }) => {
 	};
 
 	return (
-		<select disabled={isLoading} value={selected} onChange={(e) => eventHandler(e)}>
-			<option key='0'>{filterType}</option>
+		<select value={selected} onChange={(e) => eventHandler(e)}>
+			<option disabled={isLoading} key='0'>{filterType}</option>
 			{filterObj.map((val) => (
-				<option key={val.id} id={val.id}>
+				<option disabled={isLoading} key={val.id} id={val.id}>
 					{val.name}
 				</option>
 			))}

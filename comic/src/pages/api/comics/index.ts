@@ -2,13 +2,20 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import md5 from 'md5';
 import { FetchedResult } from '../../../../types';
-const api_key = '3ddd7fcf726acc8fa2940749b2c8641d';
-const private_key = '6629ec43fdacee75cb0e6419ff2d3ea12e7334f6';
+
+let COMIC_API_PRIVATE_KEY = process.env.COMIC_API_PRIVATE_KEY;
+let COMIC_API_KEY = process.env.COMIC_API_KEY;
+
+// For review
+// COMIC_API_KEY = '3ddd7fcf726acc8fa2940749b2c8641d';
+// COMIC_API_PRIVATE_KEY = '6629ec43fdacee75cb0e6419ff2d3ea12e7334f6';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// const headers: string[] = req.rawHeaders;
 	const { charactor } = req.query;
 	const { creator } = req.query;
+	const offset = Number(req.query.offset);
+	const limit = 10;
 
 	// Prevent endpoint direct access
 	// if (!headers.includes('Referer')) {
@@ -16,18 +23,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	// 	return;
 	// }
 
-	// const API_BASE = process.env.COMIC_API_BASE;
 	const baseUrl = 'http://gateway.marvel.com/v1/public/comics';
 	const ts = Date.now().toString();
-	const apiKey = api_key;
-	const privateKey = private_key;
+	const apiKey = COMIC_API_KEY;
+	const privateKey = COMIC_API_PRIVATE_KEY;
 	const hash = md5(ts + privateKey + apiKey);
-	// const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&characters=1009368`;
-	const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}${charactor ? `&characters=${charactor}` :''}${creator ? `&creators=${creator}` :''}`;
+	const api = `${baseUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&offset=${offset}&limit=${limit}&${
+		charactor ? `&characters=${charactor}` : ''
+	}${creator ? `&creators=${creator}` : ''}`;
+
 	try {
 		const response = await fetch(api);
 		const data = await response.json();
-		const { results } = data.data;
+		const { results } = data?.data;
+		const { total: resultCount } = data?.data;
 
 		const newResults = results.map((comic: FetchedResult) => {
 			const {
@@ -40,13 +49,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			} = comic;
 
 			const thumbnail = `${img.path}.${img.extension}`;
-			const creatorNames = creators.map( val => val.name );
+			const creatorNames = creators.map((val) => val.name);
 
 			return { id, thumbnail, creators: creatorNames, issueNumber, title, publishDate };
 		});
 
-		res.status(200).json(newResults);
+		res.status(200).json({ resultCount, results: newResults });
 	} catch (err: any) {
+		res.status(400).json({ resultCount: 0, results: [], err });
 		console.log(err);
 		return;
 	}

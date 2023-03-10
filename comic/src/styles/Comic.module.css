@@ -3,6 +3,9 @@
 	flex-direction: column-reverse;
 	justify-content: flex-end;
 }
+.card[data-isfavorite="true"] button {
+	background: var(--secondary-color);
+}
 
 .imgCont {
 	position: relative;
@@ -23,6 +26,10 @@
 	border: none;
 	background-color: var(--body-text);
 	color: #fff;
+}
+
+.button svg {
+	pointer-events: none;
 }
 
 .imageCover {

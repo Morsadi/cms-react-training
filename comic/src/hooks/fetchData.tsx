@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
+import { ComicResult } from '../../types';
 
 interface FetchDataResponse<Res> {
 	isLoading: boolean;
-	data: Res[];
+	data: Data<Res>;
 	serverError: any;
 }
+interface Data<Res> {
+	results: Res[];
+	resultCount: number
+}
 
-
-export const fetchData = <Res extends unknown = any>(url: string): FetchDataResponse<Res> => {
+export const fetchData = <Res extends ComicResult>(url: string): FetchDataResponse<Res> => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [data, setData] = useState<Res[]>([]);
+	const [data, setData] = useState<Data<Res> >({results: [], resultCount: 0});
 	const [serverError, setServerError] = useState<any>(null);
 
 	useEffect(() => {
