@@ -1,6 +1,6 @@
 import styles from '../styles/Comic.module.css';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { Pager } from '../../types';
+import { Pager } from '../../../../types';
 
 export const Pagination = ({ display, prevPage, nextPage }: Pager) => {
 	return (

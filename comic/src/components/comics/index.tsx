@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Comic.module.css';
 import Comic from './detail';
-import { Pagination } from '../../components/pagination';
+import { Pagination } from './comps/pagination';
 import { Filters } from './filters/index';
 import { fetchData } from '../../hooks/fetchData';
 import { usePager } from '../../hooks/pager';
