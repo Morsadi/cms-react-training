@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Button } from './button';
-import { Detail } from './detail';
-import styles from '../styles/Comic.module.css';
+import { Button } from './comps/button';
+import { Detail } from './comps/detail';
+import styles from '../../styles/Comic.module.css';
 
-import { ComicResult } from '../../types';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { ComicResult } from '../../../types';
 
 interface Props {
 	comic: ComicResult;
 	addToFavorites: Function;
-	isFavorite: any;
+	isFavorite: boolean;
 }
 
 export default function Comic({ comic, addToFavorites, isFavorite }: Props) {
 	const { id, title, thumbnail, issueNumber, publishDate, creators } = comic;
-
-	// const favorites:any = localStorage.getItem('favorites');
-
-	// const isFav = JSON.parse(favorites).find((info) => info.id === id);
-
-	// console.log(isFavorite)
 
 	function eventHandler() {
 		addToFavorites({

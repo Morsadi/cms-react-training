@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, cleanup } from '@testing-library/react';
-import Comic from '../../src/components/comic';
-import { Detail } from '../../src/components/detail';
+import Comic from '../../src/components/comics/detail';
+import { Detail } from '../../src/components/comics/comps/detail';
 
 afterEach(cleanup);
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Filter } from './filter_detail';
-import { creators, charactors } from '../../components/filters/inventory';
+import { Filter } from './detail';
+import { creators, charactors } from './inventory';
+import { FilterIndex } from '../../../../types';
 
-export const Filters = ({updateCall, isLoading}) => {
+export const Filters = ({ refreshCall, isLoading }: FilterIndex) => {
 	const [charactor, setCharactor] = useState('');
 	const [creator, setCreator] = useState('');
 
@@ -12,13 +13,23 @@ export const Filters = ({updateCall, isLoading}) => {
 
 	useEffect(() => {
 		const query = `${charactor ? `charactor=${charactor}` : ''}${creator ? `&creator=${creator}` : ''}`;
-		updateCall(query);
+		refreshCall(query);
 	}, [charactor, creator]);
 
 	return (
 		<div>
-			<Filter isLoading={isLoading} updateParams={updateParams} filterObj={creators} filterType='creator' />
-			<Filter isLoading ={isLoading} updateParams={updateParams} filterObj={charactors} filterType='charactor' />
+			<Filter
+				isLoading={isLoading}
+				updateParams={updateParams}
+				filterObj={creators}
+				filterType='creator'
+			/>
+			<Filter
+				isLoading={isLoading}
+				updateParams={updateParams}
+				filterObj={charactors}
+				filterType='charactor'
+			/>
 		</div>
 	);
 };

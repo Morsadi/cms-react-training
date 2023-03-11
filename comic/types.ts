@@ -7,11 +7,11 @@ export interface FetchedResult {
 	modified: string;
 }
 
-export interface CreatorCall {
+interface CreatorCall {
 	items: Creator[];
 }
 
-export interface Thumbnail {
+interface Thumbnail {
 	path: string;
 	extension: string;
 }
@@ -25,17 +25,38 @@ export interface ComicResult {
 	publishDate: string;
 }
 
-export interface Res {
+interface Creator {
 	resourceURI: string;
 	name: string;
 	role: string;
 }
 
+export interface Favorites {
+	id?: number;
+	title?: string;
+	issueNumber?: number;
+	thumbnail?: string;
+}
 
+export interface Pager {
+	display: string;
+	prevPage: Function;
+	nextPage: Function;
+}
 
-// export interface Creator {
-// 	resourceURI: string;
-// 	name: string;
-// 	role: string;
-// }
+export interface FilterIndex {
+	refreshCall: Function;
+	isLoading: boolean;
+}
 
+export interface FilterDetail {
+	updateParams: Function;
+	filterObj: FilterTarget[];
+	filterType: string;
+	isLoading: boolean;
+}
+
+interface FilterTarget {
+	id: number;
+	name: string;
+}

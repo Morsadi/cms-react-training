@@ -8,12 +8,12 @@ interface FetchDataResponse<Res> {
 }
 interface Data<Res> {
 	results: Res[];
-	resultCount: number
+	resultCount: number;
 }
 
 export const fetchData = <Res extends ComicResult>(url: string): FetchDataResponse<Res> => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [data, setData] = useState<Data<Res> >({results: [], resultCount: 0});
+	const [data, setData] = useState<Data<Res>>({ results: [], resultCount: 0 });
 	const [serverError, setServerError] = useState<any>(null);
 
 	useEffect(() => {
@@ -34,5 +34,5 @@ export const fetchData = <Res extends ComicResult>(url: string): FetchDataRespon
 		fetchData();
 	}, [url]);
 
-	return { isLoading, data, serverError };
+	return { isLoading, data, serverError } as const;
 };
