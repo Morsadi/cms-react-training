@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	const { charactor } = req.query;
 	const { creator } = req.query;
 	const offset = Number(req.query.offset);
-	const limit = 10;
+	const limit = 15;
 
 	// Prevent endpoint direct access
 	if (!headers.includes('Referer')) {

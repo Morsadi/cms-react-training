@@ -10,7 +10,7 @@ import { ComicResult, Favorites } from '../../../types';
 
 const slides = {
 	display: 'grid',
-	gridTemplateColumns: 'repeat(auto-fit, minmax(183px, 1fr))',
+	gridTemplateColumns: 'repeat(5, 1fr)',
 	gridGap: '30px 20px',
 };
 
@@ -39,7 +39,7 @@ export default function Comics({storedValue, addToFavorites}:any) {
 	}, [currentPage, query]);
 
 	return (
-		<>
+		<section>
 			<Filters
 				isLoading={isLoading}
 				refreshCall={refreshCall}
@@ -72,6 +72,6 @@ export default function Comics({storedValue, addToFavorites}:any) {
 					display={`${pageDisplay}`}
 				/>
 			)}
-		</>
+		</section>
 	);
 }

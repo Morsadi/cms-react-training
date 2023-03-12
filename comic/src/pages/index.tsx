@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import styles from '../styles/Comic.module.css';
+import styles from '../styles/Home.module.css';
 import Comics from '../components/comics/index';
 import { FavoriteList } from '../components/favorites/index';
 import useLocalStorage from '../hooks/localStorage';
@@ -42,7 +42,7 @@ export default function Home() {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<div>
+			<div className={styles.comicPanel}>
 				<Comics addToFavorites={addToFavorites} storedValue={storedValue} />
 				<FavoriteList storedValue={storedValue} setStoredValue={setStoredValue}/>
 			</div>

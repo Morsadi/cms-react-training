@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { Favorites } from '../../../types';
+import styles from '../../styles/Comic.module.css';
+import { FaTimes } from 'react-icons/fa';
 
 interface Props {
 	storedValue: Favorites[];
@@ -16,31 +18,30 @@ export const FavoriteList = ({ storedValue, setStoredValue }: Props) => {
 	};
 
 	return (
-		<>
-			<h3>Favorites</h3>
+		<section className={styles.favListPanel}>
+			<h3 className={styles.favListHeading}>Favorites</h3>
 			<div>
-				{storedValue.length &&
-					storedValue.map((comic: any, key: number) => (
-						<div key={`fav-comic-${comic.id}`}>
-							<button onClick={() => deleteFavorite(key)}>Delete</button>
-							<div>
-								<h4>{comic.title}</h4>
-								<p>{comic.issueNumber}</p>
+				{storedValue.length
+					? storedValue.map((comic: any, key: number) => (
+							<div className={styles.favCard} key={`fav-comic-${comic.id}`}>
+								<button className={styles.close} onClick={() => deleteFavorite(key)}><FaTimes aria-hidden='true' /></button>
+								<div className={styles.favContentSection}>
+									<h4>{comic.title}</h4>
+									{comic.issueNumber ? <p>Issue: {comic.issueNumber}</p> : null}
+								</div>
+								<div className={styles.favImgCont}>
+									<Image
+										alt={comic.title}
+										src={comic.thumbnail ? comic.thumbnail : ''}
+										blurDataURL={comic.thumbnail ? comic.thumbnail : ''}
+										placeholder='blur'
+										fill
+									/>
+								</div>
 							</div>
-							<div>
-								<Image
-									alt={comic.title}
-									src={comic.thumbnail ? comic.thumbnail : ''}
-									blurDataURL={comic.thumbnail ? comic.thumbnail : ''}
-									placeholder='blur'
-									width={125}
-									height={188}
-									sizes='(min-width: 640px) 30vw, 35vw'
-								/>
-							</div>
-						</div>
-					))}
+					  ))
+					: null}
 			</div>
-		</>
+		</section>
 	);
 };

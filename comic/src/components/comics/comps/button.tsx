@@ -10,7 +10,7 @@ export const Button = ({ eventHandler }: Props) => {
 	return (
 		<button
 			onClick={() => eventHandler()}
-			className={styles.button}>
+			className={styles.saveFavButton}>
 			<FaBolt aria-hidden='true' />
 		</button>
 	);

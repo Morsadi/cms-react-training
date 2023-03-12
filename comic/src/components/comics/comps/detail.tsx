@@ -11,18 +11,18 @@ export const Detail = ({ issue = 0, date, creators }: Props) => {
 	return (
 		<ul data-testid='details'>
 			<li className='issue'>
-				<strong>Issue: </strong>
-				{issue}
+				<label>Issue: </label>
+				{`${issue}`}
 			</li>
 			{!!date && (
 				<li className='date'>
-					<strong>Pubulished: </strong>
+					<label>Pubulished: </label>
 					<Moment format='LL'>{date}</Moment>
 				</li>
 			)}
 			{creators && (
 				<li className='creators'>
-					<strong>Creators: </strong>
+					<label>Creators: </label>
 					{creators}
 				</li>
 			)}

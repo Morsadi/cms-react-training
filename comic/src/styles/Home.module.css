@@ -1,0 +1,5 @@
+.comicPanel {
+	display: grid;
+	grid-template-columns: 1fr 0.267fr;
+	gap: 60px;
+}

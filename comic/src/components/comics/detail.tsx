@@ -32,7 +32,7 @@ export default function Comic({ comic, addToFavorites, isFavorite }: Props) {
 			data-title={title}
 			data-isfavorite={isFavorite}
 			className={styles.card}>
-			<div>
+			<div className={styles.contentSection}>
 				<h2 data-testid='title'>{title}</h2>
 				<Detail
 					issue={+issueNumber}
