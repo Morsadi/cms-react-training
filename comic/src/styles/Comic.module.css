@@ -3,6 +3,7 @@
 	flex-direction: column-reverse;
 	justify-content: flex-end;
 }
+
 .card[data-isfavorite="true"] button {
 	background: var(--secondary-color);
 }

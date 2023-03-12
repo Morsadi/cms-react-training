@@ -1,3 +1,4 @@
+import styles from '../../../styles/Filters.module.css';
 import { useEffect, useState } from 'react';
 import { Filter } from './detail';
 import { creators, charactors } from './inventory';
@@ -17,19 +18,22 @@ export const Filters = ({ refreshCall, isLoading }: FilterIndex) => {
 	}, [charactor, creator]);
 
 	return (
-		<div>
-			<Filter
-				isLoading={isLoading}
-				updateParams={updateParams}
-				filterObj={creators}
-				filterType='creator'
-			/>
-			<Filter
-				isLoading={isLoading}
-				updateParams={updateParams}
-				filterObj={charactors}
-				filterType='charactor'
-			/>
+		<div className={styles.main}>
+			<label>Filter by:</label>
+			<div className={styles.flexStack}>
+				<Filter
+					isLoading={isLoading}
+					updateParams={updateParams}
+					filterObj={charactors}
+					filterType='charactor'
+				/>
+				<Filter
+					isLoading={isLoading}
+					updateParams={updateParams}
+					filterObj={creators}
+					filterType='creator'
+				/>
+			</div>
 		</div>
 	);
 };

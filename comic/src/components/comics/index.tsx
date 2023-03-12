@@ -5,18 +5,17 @@ import { Pagination } from './comps/pagination';
 import { Filters } from './filters/index';
 import { fetchData } from '../../hooks/fetchData';
 import { usePager } from '../../hooks/pager';
-import useLocalStorage from '../../hooks/localStorage';
+
 import { ComicResult, Favorites } from '../../../types';
 
 const slides = {
 	display: 'grid',
 	gridTemplateColumns: 'repeat(auto-fit, minmax(183px, 1fr))',
 	gridGap: '30px 20px',
-	paddingInline: '10px',
 };
 
-export default function Comics() {
-	const [storedValue, setStoredValue] = useLocalStorage('favorites', '');
+export default function Comics({storedValue, addToFavorites}:any) {
+	
 	const [query, setQuery] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [url, setUrl] = useState(`/api/comics?offset=0&${query}`);
@@ -34,22 +33,6 @@ export default function Comics() {
 	const prevPage = () => currentPage !== 1 && setCurrentPage(currentPage - 1);
 
 	const nextPage = () => end !== data.resultCount && setCurrentPage(currentPage + 1);
-
-	const addToFavorites = (comicInfo: Favorites) => {
-		const isFav = (savedComicInfo: Favorites) => savedComicInfo.id === comicInfo.id;
-
-		if (!storedValue.find(isFav)) {
-			const newStorage = [...storedValue, comicInfo];
-
-			setStoredValue(newStorage);
-		} else {
-			const index = storedValue.findIndex(isFav);
-			let newStorage = [...storedValue];
-
-			newStorage.splice(index, 1);
-			setStoredValue(newStorage);
-		}
-	};
 
 	useEffect(() => {
 		setUrl(`/api/comics?offset=${offset}&${query}`);
@@ -72,7 +55,7 @@ export default function Comics() {
 				) : data?.results?.length ? (
 					data?.results?.map((comic: ComicResult) => (
 						<Comic
-							isFavorite={!!storedValue.find((val: Favorites) => val.id === comic.id)}
+							isFavorite={storedValue && !!storedValue.find((val: Favorites) => val.id === comic.id)}
 							addToFavorites={addToFavorites}
 							key={`comic-${comic.id}`}
 							comic={comic}

@@ -1,0 +1,38 @@
+.main {
+	background-color: var(--primary-color);
+	display: flex;
+	align-items: center;
+	padding: 15px 20px 12px;
+	margin-bottom: 40px;
+	gap: 14px;
+}
+
+.main label {
+	font-family: var(--font-display);
+	font-size: 0.875rem;
+	color: var(--off-white);
+	font-weight: 500;
+}
+
+.flexStack {
+	display: flex;
+	gap: 21px;
+}
+
+.flexStack select {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 16px;
+	text-transform: capitalize;
+	background: transparent;
+	border: 1px solid #8b8b8b;
+	border-radius: 3px;
+	color: var(--off-white);
+	text-indent: 4px;
+	min-width: 244px;
+	padding: 5px 0;
+}
+
+.flexStack select option {
+	color: var(--primary-color);
+}
