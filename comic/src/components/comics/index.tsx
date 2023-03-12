@@ -11,7 +11,7 @@ import { ComicResult, Favorites } from '../../../types';
 const slides = {
 	display: 'grid',
 	gridTemplateColumns: 'repeat(5, 1fr)',
-	gridGap: '30px 20px',
+	gridGap: '60px 20px',
 };
 
 export default function Comics({storedValue, addToFavorites}:any) {

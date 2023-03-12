@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column-reverse;
 	justify-content: flex-end;
-	/* max-width: 217px; */
+	gap: 11px;
 }
 
 .card[data-isfavorite='true'] button {
@@ -20,12 +20,14 @@
 
 .contentSection li:not(:first-child) label {
 	display: block;
+	margin-bottom: 1px;
 }
 
 .contentSection h2 {
 	font-size: 18px;
 	font-weight: 700;
 	line-height: calc(22 / 18);
+	margin-bottom: 10px;
 }
 
 .imgCont {
@@ -69,6 +71,15 @@
 	height: 100%;
 }
 
+.details {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+/* Favs */
+
 .favListPanel {
 	background-color: var(--primary-color);
 	align-self: self-start;
@@ -98,6 +109,7 @@
 .favContentSection * {
 	font-family: inherit;
 }
+
 .favContentSection h4 {
 	font-size: 14px;
 	font-weight: 500;
@@ -129,4 +141,19 @@
 	border-radius: 50%;
 	display: grid;
 	place-items: center;
+}
+
+/* Pager */
+.pager {
+	text-align: center;
+}
+.pager button {
+	height: 35px;
+    width: 35px;
+    background-color: var(--dark-background);
+    color: var(--off-white);
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    font-size: 18px;
 }

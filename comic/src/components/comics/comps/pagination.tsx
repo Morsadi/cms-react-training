@@ -1,10 +1,10 @@
-import styles from '../styles/Comic.module.css';
+import styles from '../../../styles/Comic.module.css';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Pager } from '../../../../types';
 
 export const Pagination = ({ display, prevPage, nextPage }: Pager) => {
 	return (
-		<>
+		<div className={styles.pager}>
 			<button
 				onClick={() => prevPage()}
 				className='prev'>
@@ -16,6 +16,6 @@ export const Pagination = ({ display, prevPage, nextPage }: Pager) => {
 				className='next'>
 				<FaAngleRight aria-hidden='true' />
 			</button>
-		</>
+		</div>
 	);
 };
