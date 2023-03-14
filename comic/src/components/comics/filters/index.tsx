@@ -1,21 +1,29 @@
 import styles from '../../../styles/Filters.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Filter } from './detail';
 import { creators, charactors } from './inventory';
 import { FilterIndex } from '../../../../types';
-	
+import { MyContext } from '../../../pages/index';
 	
 
 export const Filters = ({ refreshCall, isLoading }: FilterIndex) => {
 	const [charactor, setCharactor] = useState('');
 	const [creator, setCreator] = useState('');
 	const [isMobile, setIsMobile] = useState(false);
-	const [showFilters, setShowFilters] = useState(false);
+	const { comicDropdownStatue, setComicDropdownStatue } = useContext(MyContext);
+	// setBusyMeny(!busyMenu)
+	
 
 	const updateParams = (filterType: string, selectedFilterVal: string) => {
-		setShowFilters(false)
+		setComicDropdownStatue('')
 		filterType === 'creator' ? setCreator(selectedFilterVal) : setCharactor(selectedFilterVal);
 	};
+
+	const openFilters = () => {
+		setComicDropdownStatue('filter')
+	}
+
+
 
 	useEffect(() => {
 		const query = `${charactor ? `charactor=${charactor}` : ''}${creator ? `&creator=${creator}` : ''}`;
@@ -24,14 +32,20 @@ export const Filters = ({ refreshCall, isLoading }: FilterIndex) => {
 	
 	useEffect(()=>{
 		if (window.matchMedia("(max-width: 1023px)").matches) {
-			setIsMobile(true)
+			setIsMobile(true);
 		}
 	},[])
 
+	// useEffect(()=>{
+	// 	if (showFilters) {
+	// 		setShowFilters(false)
+	// 	}
+	// },[busyMenu])
+
 	return (
 		<div className={styles.main}>
-			<label>{isMobile ? <button onClick={()=>setShowFilters(!showFilters)}>Filter</button> : 'Filter by:'}</label>
-			<div data-show={showFilters} className={styles.flexStack}>
+			<label>{isMobile ? <button onClick={()=>openFilters()}>Filter</button> : 'Filter by:'}</label>
+			<div data-show={comicDropdownStatue} className={styles.flexStack}>
 				<Filter
 					isLoading={isLoading}
 					updateParams={updateParams}
