@@ -33,7 +33,7 @@ interface Creator {
 
 export interface Favorites {
 	id?: number;
-	title?: string;
+	title: string;
 	issueNumber?: number;
 	thumbnail?: string;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/Comic.module.css';
 import Comic from './detail';
+import styles from '../../styles/Comic.module.css';
 import { Pagination } from './comps/pagination';
 import { Filters } from './filters/index';
 import { fetchData } from '../../hooks/fetchData';
@@ -48,6 +48,7 @@ export default function Comics({ storedValue, addToFavorites }: any) {
 						<Comic
 							isFavorite={storedValue && !!storedValue.find((val: Favorites) => val.id === comic.id)}
 							addToFavorites={addToFavorites}
+							isStorageFull={storedValue.length == 10}
 							key={`comic-${comic.id}`}
 							comic={comic}
 						/>

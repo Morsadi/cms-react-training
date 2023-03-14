@@ -1,51 +1,53 @@
-import styles from '../../../styles/Filters.module.css';
 import { useEffect, useState, useContext } from 'react';
 import { Filter } from './detail';
 import { creators, charactors } from './inventory';
 import { FilterIndex } from '../../../../types';
 import { MyContext } from '../../../pages/index';
-	
+import { FaFilter } from 'react-icons/fa';
+import styles from '../../../styles/Filters.module.css';
 
 export const Filters = ({ refreshCall, isLoading }: FilterIndex) => {
 	const [charactor, setCharactor] = useState('');
 	const [creator, setCreator] = useState('');
 	const [isMobile, setIsMobile] = useState(false);
-	const { comicDropdownStatue, setComicDropdownStatue } = useContext(MyContext);
-	// setBusyMeny(!busyMenu)
-	
+	const { comicNavigation, setComicNavigation } = useContext(MyContext);
 
 	const updateParams = (filterType: string, selectedFilterVal: string) => {
-		setComicDropdownStatue('')
+		setComicNavigation('');
 		filterType === 'creator' ? setCreator(selectedFilterVal) : setCharactor(selectedFilterVal);
 	};
 
 	const openFilters = () => {
-		setComicDropdownStatue('filter')
-	}
-
-
+		if (comicNavigation === 'filter') setComicNavigation('');
+		else setComicNavigation('filter');
+	};
 
 	useEffect(() => {
 		const query = `${charactor ? `charactor=${charactor}` : ''}${creator ? `&creator=${creator}` : ''}`;
 		refreshCall(query);
 	}, [charactor, creator]);
-	
-	useEffect(()=>{
-		if (window.matchMedia("(max-width: 1023px)").matches) {
+
+	useEffect(() => {
+		if (window.matchMedia('(max-width: 1023px)').matches) {
 			setIsMobile(true);
 		}
-	},[])
-
-	// useEffect(()=>{
-	// 	if (showFilters) {
-	// 		setShowFilters(false)
-	// 	}
-	// },[busyMenu])
+	}, []);
 
 	return (
 		<div className={styles.main}>
-			<label>{isMobile ? <button onClick={()=>openFilters()}>Filter</button> : 'Filter by:'}</label>
-			<div data-show={comicDropdownStatue} className={styles.flexStack}>
+			<label>
+				{isMobile ? (
+					<button onClick={() => openFilters()}>
+						Filter
+						<FaFilter aria-hidden='true' />
+					</button>
+				) : (
+					'Filter by:'
+				)}
+			</label>
+			<div
+				data-show={comicNavigation}
+				className={styles.flexStack}>
 				<Filter
 					isLoading={isLoading}
 					updateParams={updateParams}

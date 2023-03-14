@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
-import { Favorites } from '../../../types';
 import styles from '../../styles/Comic.module.css';
 import { FaTimes, FaBolt } from 'react-icons/fa';
+import { Favorites } from '../../../types';
+import { MyContext } from '../../pages/index';
 
 interface Props {
 	storedValue: Favorites[];
 	setStoredValue: Function;
 }
 
+interface MyContextValue {
+	comicNavigation: string;
+	setComicNavigation: Function;
+}
+
 export const FavoriteList = ({ storedValue, setStoredValue }: Props) => {
-	const [showList, setShowList] = useState(false);
+	const { comicNavigation, setComicNavigation } = useContext<MyContextValue>(MyContext);
 
 	const deleteFavorite = (index: number) => {
 		const newStoredValue = [...storedValue];
@@ -18,14 +24,23 @@ export const FavoriteList = ({ storedValue, setStoredValue }: Props) => {
 
 		setStoredValue(newStoredValue);
 	};
+
+	const openFilters = () => {
+		if (comicNavigation === 'favorite') setComicNavigation('');
+		else setComicNavigation('favorite');
+	};
+
 	return (
 		<section className={styles.favListPanel}>
-			<button onClick={()=>setShowList(!showList)}>Show Favorites<FaBolt aria-hidden='true' /></button>
-			<div data-show={showList}>
+			<button onClick={() => openFilters()}>
+				{comicNavigation === 'favorite' ? 'Hide' : 'Show'} Favorites
+				<FaBolt aria-hidden='true' />
+			</button>
+			<div data-show={comicNavigation}>
 				<h3 className={styles.favListHeading}>Favorites</h3>
 				<div>
 					{storedValue.length
-						? storedValue.map((comic: any, key: number) => (
+						? storedValue.map((comic: Favorites, key: number) => (
 								<div
 									className={styles.favCard}
 									key={`fav-comic-${comic.id}`}>
@@ -44,13 +59,20 @@ export const FavoriteList = ({ storedValue, setStoredValue }: Props) => {
 											src={comic.thumbnail ? comic.thumbnail : ''}
 											blurDataURL={comic.thumbnail ? comic.thumbnail : ''}
 											placeholder='blur'
-											fill
+											height={75}
+											width={50}
 										/>
 									</div>
 								</div>
 						  ))
 						: null}
 				</div>
+				<button
+					className={styles.closeFavList}
+					onClick={() => openFilters()}>
+					Hide Favorites
+					<FaBolt aria-hidden='true' />
+				</button>
 			</div>
 		</section>
 	);

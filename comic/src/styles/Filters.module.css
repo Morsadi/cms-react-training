@@ -8,9 +8,22 @@
 	background-color: var(--primary-color);
 	z-index: 1;
 }
+.main:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 58px;
+	width: 100%;
+	background-color: var(--dark-background);
+	z-index: -1;
+}
 @media (min-width: 64em) {
 	.main {
 		padding: 15px 20px 12px;
+	}
+	.main:before {
+		display: none;
 	}
 }
 .main label {
@@ -22,6 +35,9 @@
 .main label > button {
 	font: inherit;
 	color: inherit;
+	display: flex;
+	align-items: center;
+	gap: 6px;
 }
 
 .flexStack {
@@ -31,19 +47,23 @@
 	top: -72px;
 	flex-direction: column;
 	padding: 31px;
-	z-index: -1;
+	z-index: -2;
 	background: var(--dark-background);
 	transition: top var(--ease-out);
+	pointer-events: all;
 }
 
-.flexStack[data-show='true'] {
+.flexStack[data-show='filter'] {
 	top: 58px;
 }
 
 @media (min-width: 64em) {
 	.flexStack {
+		position: static;
 		display: flex;
+		flex-direction: row;
 		gap: 21px;
+		padding: 0;
 	}
 }
 

@@ -4,24 +4,34 @@
 	grid-gap: 60px 20px;
 	margin-bottom: 80px;
 	position: relative;
-    z-index: -2;
-}
-@media (min-width: 40em) {
-	.grid {
-		display: grid;
-		/* grid-template-columns: repeat(auto-fit, minmax(182px, 1fr)); */
-	}
 }
 .card {
 	display: flex;
-	flex-direction: column-reverse;
-	justify-content: flex-end;
+	flex-direction: row;
+	justify-content: space-between;
 	gap: 11px;
+	margin-bottom: 10px;
 }
 
+@media (min-width: 40em) {
+	.grid {
+		display: grid;
+	}
+	.card {
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+		margin-bottom: 0px;
+	}
+}
 .card[data-isfavorite='true'] button {
 	background: var(--secondary-color);
 	border-color: var(--off-white);
+}
+
+.card[data-isfavorite='false'] button[data-disabled='true'] {
+	pointer-events: none;
+	background-color: #777777;
+	border-color: #777777;
 }
 
 .contentSection {
@@ -48,8 +58,14 @@
 	position: relative;
 	margin-bottom: 20px;
 	aspect-ratio: 310 / 475;
+	width: 125px;
+	min-width: 125px;
 }
-
+@media (min-width: 40em) {
+	.imgCont {
+		width: unset;
+	}
+}
 .saveFavButton {
 	display: grid;
 	place-items: center;
@@ -101,6 +117,7 @@
 	right: 20px;
 	top: 0;
 	z-index: 1;
+	pointer-events: none;
 }
 
 .favListPanel:after {
@@ -127,19 +144,43 @@
 	padding-inline: 8px;
 	gap: 2px;
 	align-items: center;
+	pointer-events: all;
 }
 .favListPanel > div {
 	position: relative;
 	z-index: -1;
 	background-color: var(--primary-color);
 	padding: 30px;
-	transform: translatey(-100%);
+	transform: translatey(calc(-100% - 40px));
 	transition: transform var(--ease-out);
+	pointer-events: all;
 }
-.favListPanel > div[data-show='true'] {
+.favListPanel > div[data-show='favorite'] {
 	transform: translatey(0%);
+	/* padding-bottom: 0; */
 }
+
+.closeFavList {
+	color: #fff;
+	position: absolute;
+	bottom: -40px;
+	font-size: 14px;
+	left: 0;
+	width: 100%;
+	background: var(--secondary-color);
+	font-family: var(--font-display);
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	padding-block: 11px;
+}
+
 @media (min-width: 64em) {
+	.closeFavList {
+		display: none;
+	}
 	.favListPanel > button {
 		display: none;
 	}
@@ -152,6 +193,9 @@
 	.favListPanel > div[data-show='false'] {
 		transform: translatey(0%);
 		transition: none;
+	}
+	.favListPanel > div {
+		transform: none;
 	}
 }
 @media (min-width: 1020px) and (max-width: 1024px) {
@@ -209,16 +253,16 @@
 .close {
 	color: var(--secondary-color);
 	position: absolute;
-	left: -6px;
-	top: -6px;
 	z-index: 1;
 	background: hsl(0deg 0% 100% / 80%);
-	width: 12px;
-	height: 12px;
-	font-size: 8px;
 	border-radius: 50%;
 	display: grid;
 	place-items: center;
+	width: 35px;
+	height: 35px;
+	font-size: 15px;
+	left: -16px;
+	top: -15px;
 }
 
 .close:after {
@@ -228,6 +272,16 @@
 	top: 0;
 	height: 83px;
 	width: 57px;
+}
+
+@media (min-width: 64em) {
+	.close {
+		left: -6px;
+		top: -6px;
+		width: 12px;
+		height: 12px;
+		font-size: 8px;
+	}
 }
 
 /* Pager */

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NextApiResponse, NextApiRequest } from 'next';
 import md5 from 'md5';
+import { NextApiResponse, NextApiRequest } from 'next';
 import { FetchedResult } from '../../../../types';
 
 let COMIC_API_PRIVATE_KEY = process.env.COMIC_API_PRIVATE_KEY;

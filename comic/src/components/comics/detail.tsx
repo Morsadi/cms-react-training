@@ -1,17 +1,18 @@
+import styles from '../../styles/Comic.module.css';
 import Image from 'next/image';
 import { Button } from './comps/button';
 import { Detail } from './comps/detail';
-import styles from '../../styles/Comic.module.css';
 
-import { ComicResult } from '../../../types';
+import { ComicResult, Favorites } from '../../../types';
 
 interface Props {
 	comic: ComicResult;
 	addToFavorites: Function;
 	isFavorite: boolean;
+	isStorageFull: boolean;
 }
 
-export default function Comic({ comic, addToFavorites, isFavorite }: Props) {
+export default function Comic({ comic, addToFavorites, isFavorite, isStorageFull }: Props) {
 	const { id, title, thumbnail, issueNumber, publishDate, creators } = comic;
 
 	function eventHandler() {
@@ -51,7 +52,10 @@ export default function Comic({ comic, addToFavorites, isFavorite }: Props) {
 					fill
 					sizes='(min-width: 640px) 30vw, 35vw'
 				/>
-				<Button eventHandler={eventHandler} />
+				<Button
+					isStorageFull={isStorageFull}
+					eventHandler={eventHandler}
+				/>
 			</div>
 		</article>
 	);
