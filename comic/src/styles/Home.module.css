@@ -1,5 +1,23 @@
 .comicPanel {
-	display: grid;
 	grid-template-columns: 1fr 0.267fr;
 	gap: 60px;
+}
+
+@media (min-width: 64em) {
+	.comicPanel {
+		display: grid;
+	}
+}
+
+@media (min-width: 64em) and (max-width: 90em) {
+	.comicPanel {
+		grid-template-columns: 1fr 0.36fr;
+		gap: 45px;
+		gap: calc(45px + (60 - 45) * ((100vw - 1024px) / (1440 - 1024)));
+	}
+}
+@media (min-width: 90em) {
+	.comicPanel {
+		gap: 60px;
+	}
 }

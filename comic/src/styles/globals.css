@@ -51,14 +51,11 @@ button {
 	border: none;
 	padding: 0;
 	margin: 0;
+	cursor: pointer;
 }
 
 main {
 	padding-inline: 20px;
-}
-
-@media (min-width: 64em) {
-	main {
-		padding-inline: 60px;
-	}
+	margin-inline: auto;
+	max-width: 1360px;
 }

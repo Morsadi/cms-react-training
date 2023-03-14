@@ -18,7 +18,7 @@ export default function Home() {
 			setStoredValue(newStorage);
 		} else {
 			const index = storedValue && storedValue.findIndex(isFav);
-			let newStorage = [...storedValue];
+			const newStorage = [...storedValue];
 	
 			newStorage.splice(index, 1);
 			setStoredValue(newStorage);

@@ -1,22 +1,50 @@
 .main {
-	background-color: var(--primary-color);
+	position: relative;
 	display: flex;
 	align-items: center;
-	padding: 15px 20px 12px;
+	padding: 20px 10px;
 	margin-bottom: 40px;
 	gap: 10px;
+	background-color: var(--primary-color);
+	z-index: 1;
 }
-
+@media (min-width: 64em) {
+	.main {
+		padding: 15px 20px 12px;
+	}
+}
 .main label {
 	font-family: var(--font-display);
 	font-size: 0.875rem;
 	color: var(--off-white);
 	font-weight: 700;
 }
+.main label > button {
+	font: inherit;
+	color: inherit;
+}
 
 .flexStack {
 	display: flex;
-	gap: 21px;
+	position: absolute;
+	left: 0;
+	top: -72px;
+	flex-direction: column;
+	padding: 31px;
+	z-index: -1;
+	background: var(--dark-background);
+	transition: top var(--ease-out);
+}
+
+.flexStack[data-show='true'] {
+	top: 58px;
+}
+
+@media (min-width: 64em) {
+	.flexStack {
+		display: flex;
+		gap: 21px;
+	}
 }
 
 .flexStack select {

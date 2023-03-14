@@ -7,15 +7,7 @@ import { fetchData } from '../../hooks/fetchData';
 import { usePager } from '../../hooks/pager';
 
 import { ComicResult, Favorites } from '../../../types';
-
-const slides = {
-	display: 'grid',
-	gridTemplateColumns: 'repeat(5, 1fr)',
-	gridGap: '60px 20px',
-};
-
-export default function Comics({storedValue, addToFavorites}:any) {
-	
+export default function Comics({ storedValue, addToFavorites }: any) {
 	const [query, setQuery] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [url, setUrl] = useState(`/api/comics?offset=0&${query}`);
@@ -46,8 +38,7 @@ export default function Comics({storedValue, addToFavorites}:any) {
 			/>
 			<div
 				data-testid='grid'
-				style={slides}
-				className={styles.slides}>
+				className={styles.grid}>
 				{isLoading ? (
 					<span>Loading...</span>
 				) : serverError ? (
@@ -65,13 +56,13 @@ export default function Comics({storedValue, addToFavorites}:any) {
 					<h3>No results</h3>
 				)}
 			</div>
-			{!isLoading && (
+			{!isLoading && data.resultCount > 15 ? (
 				<Pagination
 					prevPage={prevPage}
 					nextPage={nextPage}
 					display={`${pageDisplay}`}
 				/>
-			)}
+			) : null}
 		</section>
 	);
 }
