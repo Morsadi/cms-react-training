@@ -10,13 +10,8 @@ interface Props {
 	setStoredValue: Function;
 }
 
-interface MyContextValue {
-	comicNavigation: string;
-	setComicNavigation: Function;
-}
-
 export const FavoriteList = ({ storedValue, setStoredValue }: Props) => {
-	const { comicNavigation, setComicNavigation } = useContext<MyContextValue>(MyContext);
+	const { comicNavigation, setComicNavigation } = useContext(MyContext);
 
 	const deleteFavorite = (index: number) => {
 		const newStoredValue = [...storedValue];
