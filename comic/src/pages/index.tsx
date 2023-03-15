@@ -2,16 +2,20 @@ import React, { createContext, useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Comics from '../components/comics/index';
+import { Navigation } from '../components/header/navigation';
 import { FavoriteList } from '../components/favorites/index';
+import { IntroPanel } from '../components/content/intro_panel';
 import useLocalStorage from '../hooks/localStorage';
 import { Favorites } from '../../types';
+import { FooterPanel } from '../components/footer/footer_panel';
 
 interface MyContextValue {
 	comicNavigation: string;
 	setComicNavigation: Function;
+	storedValue: Favorites[];
 }
 
-export const MyContext = createContext<MyContextValue>({ comicNavigation: '', setComicNavigation: () => {} });
+export const MyContext = createContext<MyContextValue>({ comicNavigation: '', setComicNavigation: () => {}, storedValue:[] });
 export default function Home() {
 	const [storedValue, setStoredValue] = useLocalStorage('favorites', []);
 	const [comicNavigation, setComicNavigation] = useState<string>('');
@@ -35,7 +39,7 @@ export default function Home() {
 	};
 
 	return (
-		<MyContext.Provider value={{ comicNavigation, setComicNavigation }}>
+		<MyContext.Provider value={{ comicNavigation, setComicNavigation, storedValue }}>
 			<main>
 				<Head>
 					<title>Comic Cards</title>
@@ -52,7 +56,9 @@ export default function Home() {
 						href='/favicon.ico'
 					/>
 				</Head>
-				<div className={styles.comicPanel}>
+				<Navigation />
+				<IntroPanel />
+				<div className={`${styles.comicPanel} ${styles.controlled}`}>
 					<Comics
 						addToFavorites={addToFavorites}
 						storedValue={storedValue}
@@ -62,6 +68,7 @@ export default function Home() {
 						setStoredValue={setStoredValue}
 					/>
 				</div>
+				<FooterPanel />
 			</main>
 		</MyContext.Provider>
 	);

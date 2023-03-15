@@ -2,7 +2,7 @@
 	grid-template-columns: repeat(auto-fit, minmax(182px, 1fr));
 	justify-content: flex-start;
 	grid-gap: 60px 20px;
-	margin-bottom: 80px;
+	margin-bottom: 10px;
 	position: relative;
 }
 .card {
@@ -16,6 +16,7 @@
 @media (min-width: 40em) {
 	.grid {
 		display: grid;
+		margin-bottom: 80px;
 	}
 	.card {
 		flex-direction: column-reverse;
@@ -84,6 +85,13 @@
 	transition: border-color var(--ease-out), background-color var(--ease-out);
 	cursor: pointer;
 }
+@media (max-width: 639px) {
+	.saveFavButton {
+		left: 0;
+		bottom: 46%;
+		transform: translatex(-50%);
+	}
+}
 
 @media (hover: hover) {
 	.saveFavButton:hover {
@@ -118,6 +126,12 @@
 	top: 0;
 	z-index: 1;
 	pointer-events: none;
+}
+
+@media (min-width: 64em) {
+	.favListPanel {
+		right: 0;
+	}
 }
 
 .favListPanel:after {
@@ -291,7 +305,13 @@
 	justify-content: center;
 	gap: 20px;
 	font-size: 18px;
-	margin-bottom: 80px;
+	margin-bottom: 60px;
+}
+
+@media (min-width: 64em) {
+	.pager {
+		margin-bottom: 80px;
+	}
 }
 
 .pager button {

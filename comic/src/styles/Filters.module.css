@@ -31,6 +31,7 @@
 	font-size: 0.875rem;
 	color: var(--off-white);
 	font-weight: 700;
+	white-space: nowrap;
 }
 .main label > button {
 	font: inherit;
@@ -44,7 +45,8 @@
 	display: flex;
 	position: absolute;
 	left: 0;
-	top: -72px;
+	top: -102px;
+	width: 100%;
 	flex-direction: column;
 	padding: 31px;
 	z-index: -2;
