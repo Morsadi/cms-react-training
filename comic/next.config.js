@@ -11,7 +11,7 @@ const nextConfig = {
       '/api/comic': { page: '/api/comic' },
     };
   },
-  
+  NETLIFY_NEXT_PLUGIN_SKIP: true
 }
 
 module.exports = nextConfig
