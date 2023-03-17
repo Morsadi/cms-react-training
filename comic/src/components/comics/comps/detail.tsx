@@ -13,18 +13,18 @@ export const Detail = ({ issue = 0, date, creators }: Props) => {
 		<ul
 			className={styles.details}
 			data-testid='details'>
-			<li>
+			<li data-testid='issue'>
 				<label>Issue: </label>
 				{`${issue}`}
 			</li>
 			{!!date && (
-				<li>
+				<li data-testid='date'>
 					<label>Pubulished: </label>
 					<Moment format='LL'>{date}</Moment>
 				</li>
 			)}
 			{creators && (
-				<li>
+				<li data-testid='creators'>
 					<label>Creators: </label>
 					{creators}
 				</li>

@@ -48,8 +48,8 @@ describe('<Detail>', () => {
 	it('Date & issue & creators', ()=>{
 		const { getByTestId } = render(<Detail {...detailProps} />);
 		
-		expect(getByTestId('details').querySelector('.date').textContent).toBe('Pubulished: November 7, 2019');
-		expect(getByTestId('details').querySelector('.issue').textContent).toBe('Issue: 3');
-		expect(getByTestId('details').querySelector('.creators').textContent).toBe('Creators: Smith, Mors');
+		expect(getByTestId('date').textContent).toBe('Pubulished: November 7, 2019');
+		expect(getByTestId('issue').textContent).toBe('Issue: 3');
+		expect(getByTestId('creators').textContent).toBe('Creators: Smith, Mors');
 	})
 });
