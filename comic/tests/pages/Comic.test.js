@@ -16,6 +16,10 @@ const detailProps = {
 	issue: 3,
 	date: '2019-11-07T08:46:15-0500',
 };
+const undefinedDetailProps = {
+	creators: '',
+	date: '',
+};
 
 describe('<Comic>', () => {
 	it('Render & Debug', ()=>{
@@ -51,5 +55,12 @@ describe('<Detail>', () => {
 		expect(getByTestId('date').textContent).toBe('Pubulished: November 7, 2019');
 		expect(getByTestId('issue').textContent).toBe('Issue: 3');
 		expect(getByTestId('creators').textContent).toBe('Creators: Smith, Mors');
+	})
+	
+	it('Test undefined Date & issue & creators', ()=>{
+		const { getByTestId } = render(<Detail {...undefinedDetailProps} />);
+		
+		expect(getByTestId('details').querySelector('[data-testid="date"]')).not.toBeInTheDocument();
+		expect(getByTestId('details').querySelector('[data-testid="creators"]')).not.toBeInTheDocument();
 	})
 });
