@@ -7,10 +7,10 @@ const nextConfig = {
   },
   exportPathMap: async function (defaultPathMap) {
     return {
-      '/': { page: '/' },
-      '/api/comic': { page: '/api/comic' },
-    };
-  },
+      '/': { page: '/', query: { __nextDefaultLocale: 'en' } },
+      ...defaultPathMap
+    }
+  }
 }
 
 module.exports = nextConfig

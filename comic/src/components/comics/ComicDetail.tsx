@@ -1,7 +1,7 @@
 import styles from '../../styles/Comic.module.css';
 import Image from 'next/image';
-import { Button } from './comps/button';
-import { Detail } from './comps/detail';
+import { Button } from './comps/Button';
+import { Detail } from './comps/ComicInfoSection';
 
 import { ComicResult, Favorites } from '../../../types';
 

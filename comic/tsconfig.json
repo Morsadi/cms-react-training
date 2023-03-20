@@ -9,7 +9,7 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "esnext",
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,

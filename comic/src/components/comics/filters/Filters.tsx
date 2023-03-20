@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { Filter } from './detail';
-import { creators, charactors } from './inventory';
+import { Filter } from './FilterDetail';
+import { creators, charactors } from './Inventory';
 import { FilterIndex } from '../../../../types';
 import { MyContext } from '../../../pages/index';
 import { FaFilter } from 'react-icons/fa';

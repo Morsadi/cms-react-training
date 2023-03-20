@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MyContext } from '../../pages/index';
 import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
-import { HeroSection } from './hero_section';
+import { HeroSection } from './HeroSection';
 import { FaBars, FaBolt } from 'react-icons/fa';
 const items = [
 	{ label: 'Home', href: '/' },

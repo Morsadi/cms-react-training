@@ -1,13 +1,13 @@
 import React, { createContext, useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Comics from '../components/comics/index';
-import { Navigation } from '../components/header/navigation';
-import { FavoriteList } from '../components/favorites/index';
-import { IntroPanel } from '../components/content/intro_panel';
+import Comics from '../components/comics/ComicIndex';
+import { Navigation } from '../components/header/Navigation';
+import { FavoriteList } from '../components/favorites/Favorites';
+import { IntroPanel } from '../components/content/IntroPanel';
 import useLocalStorage from '../hooks/localStorage';
 import { Favorites } from '../../types';
-import { FooterPanel } from '../components/footer/footer_panel';
+import { FooterPanel } from '../components/footer/FooterPanel';
 
 interface MyContextValue {
 	comicNavigation: string;

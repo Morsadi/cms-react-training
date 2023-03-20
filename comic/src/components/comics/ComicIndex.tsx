@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Comic from './detail';
+import Comic from './ComicDetail';
 import styles from '../../styles/Comic.module.css';
-import { Pagination } from './comps/pagination';
-import { Filters } from './filters/index';
+import { Pagination } from './Pagination/Pagination';
+import { Filters } from './filters/Filters';
 import { fetchData } from '../../hooks/fetchData';
 import { usePager } from '../../hooks/pager';
 
