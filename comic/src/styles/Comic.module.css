@@ -259,10 +259,6 @@
 	max-width: 50px;
 }
 
-.favImgCont img {
-	object-fit: cover;
-}
-
 .close {
 	color: var(--secondary-color);
 	position: absolute;

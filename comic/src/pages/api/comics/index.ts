@@ -6,8 +6,6 @@ import { FetchedResult } from '../../../../types';
 let COMIC_API_PRIVATE_KEY = process.env.COMIC_API_PRIVATE_KEY;
 let COMIC_API_KEY = process.env.COMIC_API_KEY;
 
-COMIC_API_KEY= '3ddd7fcf726acc8fa2940749b2c8641d';
-COMIC_API_PRIVATE_KEY = '6629ec43fdacee75cb0e6419ff2d3ea12e7334f6';
 // For review
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	const headers: string[] = req.rawHeaders;
